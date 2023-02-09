@@ -5,12 +5,12 @@ namespace ServicoDadosIBGE.ApiAdapter.Clients
 {
     public interface IClientIBGEApi
     {
-        [Get("/localidades/microrregioes")]
-        Task<GetMicrorregioesDto> GetMicrorregioes(            
+        [Get("/localidades/estados")]
+        Task<GetStatesDto> GetStates(            
             [AliasAs("orderBy")] string orderBy);
 
         [Get("/localidades/estados/{state}/distritos")]
-        Task<GetMicrorregioesDto> GetDistritos(            
-            [AliasAs("state")] string state);
+        Task<GetStatesDto> GetCitites(            
+            [AliasAs("state")] int stateId);
     }
 }

@@ -14,7 +14,7 @@ namespace CadastroClientQ.DBSqlAdapter.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
+            modelBuilder.HasAnnotation("ClientVersion", "7.0.2");
 
             modelBuilder.Entity("CadastroClientQ.Domain.Models.Client", b =>
                 {
@@ -38,7 +38,7 @@ namespace CadastroClientQ.DBSqlAdapter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Clients");
                 });
 #pragma warning restore 612, 618
         }

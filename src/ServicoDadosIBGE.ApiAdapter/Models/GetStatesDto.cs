@@ -5,33 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace IBGEServicoDados.ApiAdapter.Models
-{
-    public class Mesorregiao
-    {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public UF UF { get; set; }
-    }
+{  
 
-    public class Regiao
+    public class GetStatesDto
     {
         public int id { get; set; }
         public string sigla { get; set; }
         public string nome { get; set; }
+        public RegionDto regiao { get; set; }
     }
 
-    public class GetMicrorregioesDto
-    {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public Mesorregiao mesorregiao { get; set; }
-    }
-
-    public class UF
+    public class RegionDto
     {
         public int id { get; set; }
         public string sigla { get; set; }
         public string nome { get; set; }
-        public Regiao regiao { get; set; }
     }
 }

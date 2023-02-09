@@ -14,7 +14,7 @@ namespace CadastroClientQ.DBSqlAdapter
             _context = context;
         }
 
-        public Client Add(Client client)
+        public async Task<Client> Add(Client client)
         {
             _context.Clients.Add(client);
             _context.SaveChanges();
@@ -22,7 +22,7 @@ namespace CadastroClientQ.DBSqlAdapter
             return client;
         }
 
-        public void Delete(int clientId)
+        public async Task Delete(int clientId)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
@@ -44,24 +44,24 @@ namespace CadastroClientQ.DBSqlAdapter
             }
         }
 
-        public Client Get(int id)
+        public async Task<Client> Get(int id)
         {
             return _context.Clients.AsNoTracking()
                 .FirstOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Client> GetAll()
+        public async Task<IEnumerable<Client>> GetAll()
         {
             return _context.Clients.AsNoTracking().ToList();
         }
 
-        public Client Update(Client client)
+        public async Task<Client> Update(Client client)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    var clientUpdate = Get(client.Id);
+                    var clientUpdate = await Get(client.Id);
 
                     clientUpdate.Name = client.Name;
                     clientUpdate.Age = client.Age;

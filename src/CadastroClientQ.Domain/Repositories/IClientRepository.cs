@@ -4,10 +4,10 @@ namespace CadastroClientQ.Domain.Repositories
 {
     public interface IClientRepository
     {
-        Client Add(Client client);
-        Client Update(Client client);
-        void Delete(int clientId);
-        Client Get(int Id);
-        IEnumerable<Client> GetAll();
+        Task<Client> Add(Client client);
+        Task<Client> Update(Client client);
+        Task  Delete(int clientId);
+        Task<Client> Get(int Id);
+        Task<IEnumerable<Client>> GetAll();
     }
 }

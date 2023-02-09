@@ -1,4 +1,9 @@
+using CadastroClientQ.Application;
+using CadastroClientQ.DBSqlAdapter;
 using CadastroClientQ.DBSqlAdapter.Configuration;
+using CadastroClientQ.Domain.Repositories;
+using CadastroClientQ.Domain.Services;
+using CadastroClientQ.WebApp;
 using IBGEServicoDados.ApiAdapter.Configuration;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,8 +15,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DBContextCadastroClient>(opt => 
     opt.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection"))
 );
-
+builder.Services.AddAutoMapper(typeof(IBGEApiProfileMapper));
+builder.Services.AddAutoMapper(typeof(WebMapperProfile));
 builder.Services.AddIBGEApi(builder.Configuration.GetSection("IBGEApiConfiguration").Get<IBGEApiConfiguration>());
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 var app = builder.Build();
 
