@@ -11,5 +11,6 @@ namespace CadastroClientQ.Domain.Models
         public int Age { get; set; }
         public int Sex { get; set; } // Masculino, Feminino, Não Informar
         public string State { get; set; }
+        public string City { get; set; }
     }
 }

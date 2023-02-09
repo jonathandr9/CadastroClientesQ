@@ -15,7 +15,7 @@ namespace CadastroClientQ.DBSqlAdapter.Configuration
             _configuration = configuration;
         }
 
-        public DbSet<Client> Products { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         protected override void OnConfiguring(
             DbContextOptionsBuilder optionsBuilder) =>

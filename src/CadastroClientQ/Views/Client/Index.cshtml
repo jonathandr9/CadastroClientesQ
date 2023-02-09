@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "Cadastro Client";
+}
+@using CadastroClientQ.WebApp.Models
+@model ClientFormViewModel;
+
+<div class="container-fluid">
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cadastro Clientes</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-10">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" onclick="openModalAddClient()"><span class="icon-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Incluir Client</span></button>
+                </div>
+            </div>
+            <hr class="customHr" />
+            <br />
+            <div id="divTableList">
+                @Html.Partial("_ListClients")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+<script src="~/js/clientForm.js" asp-append-version="true"></script>
+}
+
+<div class="col-sm">
+    <div class="modal" tabindex="-1" role="dialog" id="modalAddClient">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cadastro Modelo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="inputCategoria">Nome</label>
+                            <input id="inputCategoria" class="form-control" maxlength="40" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="inputAge">Idade</label>
+                            <input id="inputAge" type="number" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="sexSelect">Sexo</label>
+                             <select id="sexSelect" class="form-control form-control-user">
+                                <option selected value=""></option>
+                                @foreach (var item in Model.States)
+                                {
+                                    <option value="@item.Acronym">@item.Description</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="brandSelect">Estado</label>
+                            <select id="brandSelect" class="form-control form-control-user">
+                                <option selected value=""></option>
+                                @foreach (var item in Model.States)
+                                {
+                                    <option value="@item.Acronym">@item.Description</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="brandSelect">Cidade</label>
+                            <select id="brandSelect" class="form-control form-control-user">
+                                <option selected value=""></option>
+                                @foreach (var item in Model.States)
+                                {
+                                    <option value="@item.Acronym">@item.Description</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <div class="text-right">
+                        <button class="btn btn-danger" onclick="hideModalAddModel()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
+                        <button class="btn btn-primary" onclick="addModel()"><span class="icon-label"></span><span class="btn-text">Salvar</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm">
+    <div class="modal" tabindex="-1" role="dialog" id="modalUpdateModel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleModalUpdateModel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="brandSelectUpdate">Marca</label>
+                            <select id="brandSelectUpdate" class="form-control form-control-user">
+                                <option selected value=""></option>
+                                @foreach (var item in Model.States)
+                                {
+                                    <option value="@item.Acronym">@item.Description</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputCategoriaUpdate">Categoria</label>
+                            <input id="inputCategoriaUpdate" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="inputCodigoUpdate">Codigo</label>
+                            <input id="inputCodigoUpdate" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputDescricaoModeloUpdate">Descrição Modelo</label>
+                            <input id="inputDescricaoModeloUpdate" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="inputUrlCatalogoUpdate">Url Catálogo</label>
+                            <input id="inputUrlCatalogoUpdate" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-right">
+                        <button class="btn btn-danger" onclick="hideModalUpdateModel()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
+                        <button class="btn btn-primary" id="buttonUpdateModel" onclick=""><span class="icon-label"></span><span class="btn-text">Atualizar</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm">
+    <div class="modal" tabindex="-1" role="dialog" id="modalConfirmAction">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleModalConfirmAction"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="textBodyModalConfirmAction"></p>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-right">
+                        <button class="btn btn-danger" id="cancelButtonModalConfirmAction" onclick=""><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
+                        <button class="btn btn-success" id="confirmButtonModalConfirmAction" onclick=""><span class="icon-label"></span><span class="btn-text">Confirmar</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

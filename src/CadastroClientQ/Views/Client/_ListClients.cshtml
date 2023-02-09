@@ -1,0 +1,45 @@
+﻿@using CadastroClientQ.WebApp.Models
+@model ClientFormViewModel;
+
+<div class="col-md-12">
+    <table class="table table-hover w-100 display pb-30" id="dataTableClients" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Id</th>                
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Sexo</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th>Ações</th>
+            </thead>
+        <tbody>
+            @foreach (var item in Model.Clients)
+            {
+                <tr>
+                    <td>@item.Id</td>                    
+                    <td>@item.Name</td>
+                    <td>@item.Age</td>
+                    <td>@item.Sex</td>
+                    <td>@item.State</td>
+                    <td>@item.City</td>
+                    <td>
+                       @*  <button style="background-color: transparent; border: none; color:#3750FF" 
+                                type="button" class="customHref ml-0" title="Editar Modelo"
+                                onclick="openModelUpdate(@item.IdModelo, @item.IdMarca, '@item.DescricaoMarca', '@item.Categoria', '@item.Codigo', '@item.Descricao', '@item.UrlCatalogo');">
+
+                              <span class="wizard-icon-wrap-3"><i class="fa fa-pen"></i></span>
+                         </button>
+
+                        <button style="background-color: transparent; border: none; color:#FF3131"
+                            type="button" class="customHref ml-0" title="Deletar Modelo"
+                            onclick="openModalDelete(@item.IdModelo);">
+
+                              <span class="wizard-icon-wrap-3"><i class="fa fa-trash"></i></span>
+                         </button>*@
+                    </td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

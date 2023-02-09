@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables/",
+      "files": [
+        "js/jquery.dataTables.min.js",
+        "images/sort_asc.png",
+        "images/sort_asc_disabled.png",
+        "images/sort_both.png",
+        "images/sort_desc.png",
+        "images/sort_desc_disabled.png",
+        "css/dataTables.bootstrap4.min.css",
+        "css/jquery.dataTables.min.css",
+        "js/dataTables.material.min.js",
+        "js/dataTables.bootstrap4.min.js",
+        "js/dataTables.dataTables.min.js"
+      ]
+    }
+  ]
+}
