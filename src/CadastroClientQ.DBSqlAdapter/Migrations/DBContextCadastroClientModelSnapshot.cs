@@ -14,7 +14,7 @@ namespace CadastroClientQ.DBSqlAdapter.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ClientVersion", "7.0.2");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
 
             modelBuilder.Entity("CadastroClientQ.Domain.Models.Client", b =>
                 {
@@ -25,6 +25,13 @@ namespace CadastroClientQ.DBSqlAdapter.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CityDescription")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -32,9 +39,12 @@ namespace CadastroClientQ.DBSqlAdapter.Migrations
                     b.Property<int>("Sex")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("State")
+                    b.Property<string>("StateDescription")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("StateId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

@@ -21,7 +21,7 @@ namespace IBGEServicoDados.ApiAdapter
         {
             try
             {
-                var returnApi = await _clientIBGEApi.GetCitites(stateId);
+                var returnApi = await _clientIBGEApi.GetCitites(stateId, "nome");
 
                 var returnOfMethod = _mapper.Map<IEnumerable<City>>(returnApi);
 

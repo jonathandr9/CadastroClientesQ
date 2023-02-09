@@ -40,13 +40,13 @@ namespace CadastroClientQ.Controllers
 
         public async Task<JsonResult> GetCities(int stateId)
         {
-            var cities = _clientService.GetCities(stateId);
+            var cities = await _clientService.GetCities(stateId);
 
             return new JsonResult(cities);
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddModel(
+        public async Task<JsonResult> AddClient(
             [FromBody] AddClientViewModel model)
         {
             try

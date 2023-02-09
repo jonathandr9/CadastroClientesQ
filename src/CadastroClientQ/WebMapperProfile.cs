@@ -9,7 +9,7 @@ namespace CadastroClientQ.WebApp
         public WebMapperProfile()
         {
             CreateMap<AddClientViewModel, Client>();
-            CreateMap<Client, ClientFormViewModel>();
+            CreateMap<Client, ClientViewModel>();
         }
     }
 }

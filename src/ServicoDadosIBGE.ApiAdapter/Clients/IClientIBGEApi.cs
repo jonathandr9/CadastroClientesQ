@@ -6,11 +6,12 @@ namespace ServicoDadosIBGE.ApiAdapter.Clients
     public interface IClientIBGEApi
     {
         [Get("/localidades/estados")]
-        Task<GetStatesDto> GetStates(            
+        Task<IEnumerable<GetStatesDto>> GetStates(            
             [AliasAs("orderBy")] string orderBy);
 
         [Get("/localidades/estados/{state}/distritos")]
-        Task<GetStatesDto> GetCitites(            
-            [AliasAs("state")] int stateId);
+        Task<IEnumerable<GetCitiesDto>> GetCitites(            
+            [AliasAs("state")] int stateId,
+            [AliasAs("orderBy")] string orderBy);
     }
 }

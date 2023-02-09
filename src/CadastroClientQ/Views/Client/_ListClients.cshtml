@@ -21,22 +21,22 @@
                     <td>@item.Name</td>
                     <td>@item.Age</td>
                     <td>@item.Sex</td>
-                    <td>@item.State</td>
-                    <td>@item.City</td>
+                    <td>@item.CityDescription</td>
+                    <td>@item.StateDescription</td>
                     <td>
-                       @*  <button style="background-color: transparent; border: none; color:#3750FF" 
+                         <button style="background-color: transparent; border: none; color:#3750FF" 
                                 type="button" class="customHref ml-0" title="Editar Modelo"
-                                onclick="openModelUpdate(@item.IdModelo, @item.IdMarca, '@item.DescricaoMarca', '@item.Categoria', '@item.Codigo', '@item.Descricao', '@item.UrlCatalogo');">
+                                onclick="openModelUpdate(@item.Id, '@item.Name', @item.Age, @item.Sex, @item.StateId, @item.CityId);">
 
                               <span class="wizard-icon-wrap-3"><i class="fa fa-pen"></i></span>
                          </button>
 
                         <button style="background-color: transparent; border: none; color:#FF3131"
                             type="button" class="customHref ml-0" title="Deletar Modelo"
-                            onclick="openModalDelete(@item.IdModelo);">
+                            onclick="openModalDelete(@item.Id);">
 
-                              <span class="wizard-icon-wrap-3"><i class="fa fa-trash"></i></span>
-                         </button>*@
+                              <span class=""><i class="fa fa-trash"></i></span>
+                         </button>
                     </td>                    
                 </tr>
             }

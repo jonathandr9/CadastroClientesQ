@@ -66,8 +66,10 @@ namespace CadastroClientQ.DBSqlAdapter
                     clientUpdate.Name = client.Name;
                     clientUpdate.Age = client.Age;
                     clientUpdate.Sex = client.Sex;
-                    clientUpdate.State = client.State;
-                    clientUpdate.City = client.City;
+                    clientUpdate.StateId = client.StateId;
+                    clientUpdate.StateDescription = client.StateDescription;
+                    clientUpdate.CityId = client.CityId;
+                    clientUpdate.CityDescription = client.CityDescription;
 
 
                     _context.Clients.Update(clientUpdate);
