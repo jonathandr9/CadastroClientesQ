@@ -16,3 +16,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.load {
+    width: 83%;
+    height: 100%;
+    background: rgba(185, 71, 155, 0.12);
+    z-index: 999999;
+    display: block;
+    position: absolute;
+}
+
+.icon-load {
+    position: fixed;
+    top: 30%;
+    left: 45%;
+    color: #192c54;
+}

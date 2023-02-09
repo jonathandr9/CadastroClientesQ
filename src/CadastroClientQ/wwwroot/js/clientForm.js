@@ -9,11 +9,17 @@
         order: [[1, 'asc']]
     });
 
-    
+
     $("#stateSelect").change(function () {
         var id = $(this).find(':selected').val();
 
-        onStateSelected(id);
+        onStateSelected(id, "#citySelect");
+    });
+
+    $("#stateSelectUpdate").change(function () {
+        var id = $(this).find(':selected').val();
+
+        onStateSelected(id, "#citySelectUpdate");
     });
 });
 
@@ -21,7 +27,9 @@ function openModalAddClient() {
     $("#modalAddClient").modal('show');
 }
 
-function onStateSelected(idState) {
+function onStateSelected(idState, field) {
+
+    $(".load").show();
 
     var urlMetodo = baseUrl + `/Client/GetCities?stateId=${idState}`;
 
@@ -30,18 +38,25 @@ function onStateSelected(idState) {
         dataType: "json",
         type: "GET",
         success: function (result) {
-            var $dropdown = $("#citySelect");
+            $(field).html("")
+            var $dropdown = $(field);
             $dropdown.append($("<option />").val("").text(""));
             $.each(result, function () {
                 $dropdown.append($("<option />").val(this.id).text(this.description));
             });
-            $("#citySelect").prop('disabled', false)
+            $(field).prop('disabled', false)
+            $(field).val("")
+            $(".load").hide();
         }
     });
 
 }
 
 function addClient() {
+
+    $("#modalBodyAddClient").validate();
+
+    $(".load").show();
 
     var dados = {
         name: $("#inputName").val(),
@@ -65,12 +80,24 @@ function addClient() {
             if (result.type == "success") {
                 alert("Client Cadastrado com Sucesso!");
                 //hideModalAddModel();
-                setTimeout(function () { window.location.reload() }, 2000);
+                setTimeout(function () { window.location.reload() }, 1000);
+                $(".load").hide();
             } else {
                 alert(result.message);
             }
         }
     });
+}
+
+function hideModalAddClient() {
+    $("#inputName").val('');
+    $("#inputAge").val('');
+    $("#sexSelect").val('');
+    $("#stateSelect").val('');
+    $("#citySelect").val('');
+    $("#citySelect").prop("disabled", true);
+
+    $("#modalAddClient").modal('hide');
 }
 
 function openModelUpdate(
@@ -81,6 +108,7 @@ function openModelUpdate(
     state,
     city) {
 
+    $(".load").show();
 
     $("#inputNameUpdate").val(name);
     $("#inputAgeUpdate").val(age);
@@ -88,7 +116,7 @@ function openModelUpdate(
     $("#stateSelectUpdate").val(state);
     $("#idClientUpdateModal").val(id);
     $("#titleModalUpdateModel").html(`Atualizar Cliente ${id}`);
-    
+
     var urlMetodo = baseUrl + `/Client/GetCities?stateId=${state}`;
 
     $.ajax({
@@ -104,6 +132,7 @@ function openModelUpdate(
             $("#citySelectUpdate").prop('disabled', false)
             $("#citySelectUpdate").val(city);
             $("#modalUpdateClient").modal('show');
+            $(".load").hide();
         }
     });
 
@@ -111,7 +140,7 @@ function openModelUpdate(
 
 function updateClient() {
 
-    $(".loading").show();
+    $(".load").show();
 
 
     var dados = {
@@ -137,6 +166,7 @@ function updateClient() {
             if (result.type == "success") {
                 alert(result.message);
                 hideModalUpdateModel();
+                $(".load").hide();
                 setTimeout(function () { window.location.reload() }, 2000);
             } else {
                 alert(result.message);
@@ -163,6 +193,8 @@ function hideModalConfirmAction() {
 
 function deleteClient(clientId) {
 
+    $(".load").show();
+
     var urlMetodo = baseUrl + `/Client/DeleteClient?clientId=${clientId}`;
 
     $.ajax({
@@ -172,11 +204,16 @@ function deleteClient(clientId) {
         success: function (result) {
             if (result.type == "success") {
                 alert(result.message);
+                $(".load").hide();
                 $("#modalConfirmAction").modal('hide');
-                setTimeout(function () { window.location.reload() }, 2000);
+                setTimeout(function () { window.location.reload() }, 1000);
             } else {
                 alert(result.message);
             }
         }
     });
+}
+
+function hideModalUpdateClient() {
+    $("#modalUpdateClient").modal('hide');
 }

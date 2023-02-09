@@ -40,7 +40,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Cadastro Cliente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" onclick="hideModalAddClient()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="text-right">
-                        <button class="btn btn-danger" onclick="hideModalAddModel()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
+                        <button class="btn btn-danger" onclick="hideModalAddClient()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
                         <button class="btn btn-primary" onclick="addClient()"><span class="icon-label"></span><span class="btn-text">Salvar</span></button>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="titleModalUpdateModel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideModalUpdateClient();"">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="text-right">
-                        <button class="btn btn-danger" onclick="hideModalUpdateModel()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
+                        <button class="btn btn-danger" onclick="hideModalUpdateClient()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
                         <button class="btn btn-primary" id="buttonUpdateClient" onclick="updateClient()"><span class="icon-label"></span><span class="btn-text">Atualizar</span></button>
                     </div>
                 </div>
