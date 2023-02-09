@@ -22,6 +22,11 @@ namespace CadastroClientQ.Application
             return await _clientRepository.Add(client);
         }
 
+        public async Task Delete(int clientId)
+        {
+            await _clientRepository.Delete(clientId);
+        }
+
         public async Task<IEnumerable<State>> GetAllStates()
         {
             return await _ibgeApi.GetStates();
@@ -35,6 +40,11 @@ namespace CadastroClientQ.Application
         public async Task<IEnumerable<Client>> GetListClients()
         {
             return await _clientRepository.GetAll();
+        }
+
+        public async Task<Client> Update(Client client)
+        {
+            return await _clientRepository.Update(client);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace CadastroClientQ.DBSqlAdapter
                 try
                 {
                     _context.Database.ExecuteSqlRaw($@"
-                            DELETE Clients
+                            DELETE FROM Clients
                             WHERE Id = {clientId}");
 
                     _context.SaveChanges();

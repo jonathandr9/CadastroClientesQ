@@ -8,5 +8,7 @@ namespace CadastroClientQ.Domain.Services
         Task<IEnumerable<State>> GetAllStates();
         Task<IEnumerable<City>> GetCities(int stateId);
         Task<Client> AddClient(Client client);
+        Task<Client> Update(Client client);
+        Task Delete(int clientId);
     }
 }

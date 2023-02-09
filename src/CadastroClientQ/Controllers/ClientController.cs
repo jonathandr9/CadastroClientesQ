@@ -71,6 +71,55 @@ namespace CadastroClientQ.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<JsonResult> UpdateClient(
+            [FromBody] AddClientViewModel model)
+        {
+            try
+            {
+                var clientAdd = _mapper.Map<Client>(model);
+
+                await _clientService.Update(clientAdd);
+
+                return new JsonResult(new
+                {
+                    type = "success",
+                    message = "Cliente Atualizado com Sucesso!"
+                });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    type = "error",
+                    message = ex.Message
+                });
+            }
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> DeleteClient(int clientId)
+        {
+            try
+            {
+                await _clientService.Delete(clientId);
+
+                return new JsonResult(new
+                {
+                    type = "success",
+                    message = $"Cliente {clientId} deletado!"
+                });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    type = "error",
+                    message = ex.Message
+                });
+            }
+        }
+
 
         [ResponseCache(
             Duration = 0,

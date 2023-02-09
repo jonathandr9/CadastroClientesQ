@@ -86,6 +86,8 @@ function openModelUpdate(
     $("#inputAgeUpdate").val(age);
     $("#sexSelectUpdate").val(sex);
     $("#stateSelectUpdate").val(state);
+    $("#idClientUpdateModal").val(id);
+    $("#titleModalUpdateModel").html(`Atualizar Cliente ${id}`);
     
     var urlMetodo = baseUrl + `/Client/GetCities?stateId=${state}`;
 
@@ -107,21 +109,23 @@ function openModelUpdate(
 
 }
 
-function updateModel(modelId) {
+function updateClient() {
 
     $(".loading").show();
 
 
     var dados = {
-        idModelo: modelId,
-        idMarca: $("#brandSelectUpdate").val(),
-        codigo: $("#inputCodigoUpdate").val(),
-        categoria: $("#inputCategoriaUpdate").val(),
-        descricao: $("#inputDescricaoModeloUpdate").val(),
-        urlCatalogo: $("#inputUrlCatalogoUpdate").val()
+        id: $("#idClientUpdateModal").val(),
+        name: $("#inputNameUpdate").val(),
+        age: parseInt($("#inputAgeUpdate").val()),
+        sex: parseInt($("#sexSelectUpdate").val()),
+        stateId: parseInt($("#stateSelectUpdate").val()),
+        stateDescription: $("#stateSelectUpdate").find(':selected').html(),
+        cityId: parseInt($("#citySelectUpdate").val()),
+        cityDescription: $("#citySelectUpdate").find(':selected').html()
     };
 
-    var urlMetodo = baseUrl + '/Records/UpdateModel';
+    var urlMetodo = baseUrl + '/Client/UpdateClient';
 
     $.ajax({
         url: urlMetodo,
@@ -131,12 +135,11 @@ function updateModel(modelId) {
         data: JSON.stringify(dados),
         success: function (result) {
             if (result.type == "success") {
-                displayMessage(result.message, result.type);
+                alert(result.message);
                 hideModalUpdateModel();
                 setTimeout(function () { window.location.reload() }, 2000);
             } else {
-                $(".loading").hide();
-                displayMessage(result.message, result.type);
+                alert(result.message);
             }
         }
     });
@@ -144,11 +147,36 @@ function updateModel(modelId) {
 
 
 function openModalDelete(idModel) {
-    $("#titleModalConfirmAction").html(`Excluir Modelo ${idModel}`);
-    $("#textBodyModalConfirmAction").html('Confirma a exclusão do Modelo ?');
+    $("#titleModalConfirmAction").html(`Excluir Cliente ${idModel}`);
+    $("#textBodyModalConfirmAction").html('Confirma a exclusão do Client ?');
 
-    $("#confirmButtonModalConfirmAction").attr("onclick", `deleteModel(${idModel})`);
+    $("#confirmButtonModalConfirmAction").attr("onclick", `deleteClient(${idModel})`);
     $("#cancelButtonModalConfirmAction").attr("onclick", `hideModalConfirmAction()`);
 
     $("#modalConfirmAction").modal('show');
+}
+
+function hideModalConfirmAction() {
+    $("#modalConfirmAction").modal('hide');
+}
+
+
+function deleteClient(clientId) {
+
+    var urlMetodo = baseUrl + `/Client/DeleteClient?clientId=${clientId}`;
+
+    $.ajax({
+        url: urlMetodo,
+        contentType: "application/json; charset=utf-8",
+        type: "POST",
+        success: function (result) {
+            if (result.type == "success") {
+                alert(result.message);
+                $("#modalConfirmAction").modal('hide');
+                setTimeout(function () { window.location.reload() }, 2000);
+            } else {
+                alert(result.message);
+            }
+        }
+    });
 }
