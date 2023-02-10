@@ -22,18 +22,15 @@
         onStateSelected(id, "#citySelectUpdate");
     });
 
-    $("#formAddModel").submit(function () {
+    document.getElementById('formAddModel').addEventListener('submit', e => {
+        e.preventDefault()
         addClient();
     });
 
-    $("#formUpdateClient").submit(function () {
+    document.getElementById('formUpdateClient').addEventListener('submit', e => {
+        e.preventDefault()
         updateClient();
     });
-
-    if (window.location.href.includes('?') == false) {
-        setTimeout(function () { window.location = window.location.href + '?' }, 2000);
-    }
-
 });
 
 function openModalAddClient() {
@@ -176,7 +173,7 @@ function updateClient() {
         data: JSON.stringify(dados),
         success: function (result) {
             if (result.type == "success") {
-                setTimeout(function(){ window.location.reload(true) }, 2000);
+                setTimeout(function () { window.location.reload(true) }, 2000);
                 displayMessage("Cliente Atualizado com Sucesso!", "success");
                 $(".load").hide();
             } else {
@@ -189,7 +186,7 @@ function updateClient() {
 
 function openModalDelete(idModel) {
     $("#titleModalConfirmAction").html(`Excluir Cliente ${idModel}`);
-    $("#textBodyModalConfirmAction").html('Confirma a exclusão do Client ?');
+    $("#textBodyModalConfirmAction").html('Confirma a exclusão do Cliente ?');
 
     $("#confirmButtonModalConfirmAction").attr("onclick", `deleteClient(${idModel})`);
     $("#cancelButtonModalConfirmAction").attr("onclick", `hideModalConfirmAction()`);

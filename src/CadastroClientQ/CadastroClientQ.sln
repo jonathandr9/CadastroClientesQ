@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientQ.WebApp", "CadastroClientQ.WebApp.csproj", "{7070D97F-B0D8-4F89-BA59-0A2BC4493180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CadastroClientQ.WebApp", "CadastroClientQ.WebApp.csproj", "{7070D97F-B0D8-4F89-BA59-0A2BC4493180}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Core", "0.Core", "{D68D801A-A747-48D9-9A58-527331D381F2}"
 EndProject
@@ -11,15 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Infra", "1.Infra", "{5499
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Presentation", "2.Presentation", "{8D5883A7-E8F9-47D1-9DF7-AFBC7F2EB470}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientQ.Application", "..\CadastroClientQ.Application\CadastroClientQ.Application.csproj", "{F82FB695-E6AD-4A5C-A188-AB958E28C9F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CadastroClientQ.Application", "..\CadastroClientQ.Application\CadastroClientQ.Application.csproj", "{F82FB695-E6AD-4A5C-A188-AB958E28C9F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientQ.Domain", "..\CadastroClientQ.Domain\CadastroClientQ.Domain.csproj", "{D0EF0139-03FC-4936-BE86-AE05EA9D71AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CadastroClientQ.Domain", "..\CadastroClientQ.Domain\CadastroClientQ.Domain.csproj", "{D0EF0139-03FC-4936-BE86-AE05EA9D71AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientQ.DBSqlAdapter", "..\CadastroClientQ.DBSqlAdapter\CadastroClientQ.DBSqlAdapter.csproj", "{E3031C86-604F-4942-9045-66B487471FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CadastroClientQ.DBSqlAdapter", "..\CadastroClientQ.DBSqlAdapter\CadastroClientQ.DBSqlAdapter.csproj", "{E3031C86-604F-4942-9045-66B487471FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBGEServicoDados.ApiAdapter", "..\ServicoDadosIBGE.ApiAdapter\IBGEServicoDados.ApiAdapter.csproj", "{631A3B61-5240-4F19-ADD1-E059A8B6972B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBGEServicoDados.ApiAdapter", "..\ServicoDadosIBGE.ApiAdapter\IBGEServicoDados.ApiAdapter.csproj", "{631A3B61-5240-4F19-ADD1-E059A8B6972B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Tests", "3.Tests", "{81657FA7-C32D-4310-9362-B220D66EBFDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientQ.UnitTests", "..\CadastroClientQ.UnitTests\CadastroClientQ.UnitTests.csproj", "{FBD52B66-A0FB-49E7-8137-ABB48789CCD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{631A3B61-5240-4F19-ADD1-E059A8B6972B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{631A3B61-5240-4F19-ADD1-E059A8B6972B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{631A3B61-5240-4F19-ADD1-E059A8B6972B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD52B66-A0FB-49E7-8137-ABB48789CCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD52B66-A0FB-49E7-8137-ABB48789CCD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD52B66-A0FB-49E7-8137-ABB48789CCD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD52B66-A0FB-49E7-8137-ABB48789CCD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{D0EF0139-03FC-4936-BE86-AE05EA9D71AD} = {D68D801A-A747-48D9-9A58-527331D381F2}
 		{E3031C86-604F-4942-9045-66B487471FA5} = {5499DD47-B373-4890-92B4-B6F8CF6491D0}
 		{631A3B61-5240-4F19-ADD1-E059A8B6972B} = {5499DD47-B373-4890-92B4-B6F8CF6491D0}
+		{FBD52B66-A0FB-49E7-8137-ABB48789CCD9} = {81657FA7-C32D-4310-9362-B220D66EBFDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76F1C9D6-30FA-4B0E-98DB-0F8550E03DF5}
