@@ -55,6 +55,11 @@ namespace CadastroClientQ.DBSqlAdapter
             return _context.Clients.AsNoTracking().ToList();
         }
 
+        public async Task<bool> ClientExists(int clientId)
+        {
+            return _context.Clients.Any(c => c.Id == clientId);
+        }
+
         public async Task<Client> Update(Client client)
         {
             using (var transaction = _context.Database.BeginTransaction())

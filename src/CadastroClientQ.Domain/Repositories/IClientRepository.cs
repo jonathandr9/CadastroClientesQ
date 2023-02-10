@@ -9,5 +9,6 @@ namespace CadastroClientQ.Domain.Repositories
         Task  Delete(int clientId);
         Task<Client> Get(int Id);
         Task<IEnumerable<Client>> GetAll();
+        Task<bool> ClientExists(int clientId);
     }
 }

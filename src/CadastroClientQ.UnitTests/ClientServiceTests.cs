@@ -43,7 +43,7 @@ namespace CadastroClientQ.UnitTests
             IClientService clientService = new ClientService(_clientRepositoryMock.Object, _ibgeApiAdapter.Object);
 
             //Act      
-            var returnClient = clientService.AddClient(clientAdd);
+            var returnClient = await clientService.AddClient(clientAdd);
 
             //Assert
             Assert.True(returnClient.Id == 1);
@@ -73,7 +73,113 @@ namespace CadastroClientQ.UnitTests
 
 
             //Act / Assert
-            Assert.ThrowsAsync<ArgumentException>(() => clientService.AddClient(clientAdd));
+            Assert.ThrowsAsync<ArgumentException>(async () => await clientService.AddClient(clientAdd));
+        }
+
+        [Fact]
+        [Trait("UpdateClient", "Client")]
+        public async Task UpdateClient_ClientService_Success()
+        {
+            //Arrange          
+            var clientAdd = new Client()
+            {
+                Id = 1,
+                Name = "Cliente teste",
+                Age = 20,
+                Sex = 1,
+                StateId = 31,
+                StateDescription = "Minas Gerais",
+                CityId = 3106705,
+                CityDescription = "Betim",
+            };
+
+            var clientReturn = clientAdd;
+            clientReturn.Id = 1;
+
+            _clientRepositoryMock.Setup(x => x.Update(It.IsAny<Client>())
+                ).ReturnsAsync(clientReturn);
+
+            _clientRepositoryMock.Setup(x => x.ClientExists(It.IsAny<int>())).ReturnsAsync(true);
+
+            IClientService clientService = new ClientService(_clientRepositoryMock.Object, _ibgeApiAdapter.Object);
+
+            //Act      
+            var returnClient = clientService.Update(clientAdd);
+
+            //Assert
+            Assert.True(returnClient.Id == 1);
+        }
+
+
+        [Fact]
+        [Trait("AddProduct", "Product")]
+        public async Task UpdateClient_ClientService_ErrorAnyNullParam()
+        {
+            //Arrange       
+            var clientAdd = new Client()
+            {
+                Name = null,
+                Age = 20,
+                Sex = 1,
+                StateId = 31,
+                StateDescription = "Minas Gerais",
+                CityId = 3106705,
+                CityDescription = "Betim",
+            };
+
+
+            _clientRepositoryMock.Setup(x => x.Update(It.IsAny<Client>()));
+            _clientRepositoryMock.Setup(x => x.ClientExists(It.IsAny<int>())).ReturnsAsync(true);
+
+            IClientService clientService = new ClientService(_clientRepositoryMock.Object, _ibgeApiAdapter.Object);
+
+
+            //Act / Assert
+            Assert.ThrowsAsync<ArgumentException>(() => clientService.Update(clientAdd));
+        }
+
+        [Fact]
+        [Trait("AddProduct", "Product")]
+        public async Task UpdateClient_ClientService_CLientNotExists()
+        {
+            //Arrange       
+            var clientUpdate = new Client()
+            {
+                Name = null,
+                Age = 20,
+                Sex = 1,
+                StateId = 31,
+                StateDescription = "Minas Gerais",
+                CityId = 3106705,
+                CityDescription = "Betim",
+            };
+
+
+            _clientRepositoryMock.Setup(x => x.Update(It.IsAny<Client>()));
+            _clientRepositoryMock.Setup(x => x.ClientExists(It.IsAny<int>())).ReturnsAsync(false);
+
+            IClientService clientService = new ClientService(_clientRepositoryMock.Object, _ibgeApiAdapter.Object);
+
+
+            //Act / Assert
+            Assert.ThrowsAsync<ArgumentException>(async () => await clientService.Update(clientUpdate));
+        }
+
+        [Fact]
+        [Trait("AddProduct", "Product")]
+        public async Task DeleteClient_ClientService_CLientNotExists()
+        {
+            //Arrange       
+            var clientID = 1;
+
+            _clientRepositoryMock.Setup(x => x.Delete(It.IsAny<int>()));
+            _clientRepositoryMock.Setup(x => x.ClientExists(It.IsAny<int>())).ReturnsAsync(false);
+
+            IClientService clientService = new ClientService(_clientRepositoryMock.Object, _ibgeApiAdapter.Object);
+
+
+            //Act / Assert
+            Assert.ThrowsAsync<ArgumentException>(async () => await clientService.Delete(clientID));
         }
     }
 }

@@ -19,23 +19,16 @@ namespace CadastroClientQ.Application
 
         public async Task<Client> AddClient(Client client)
         {
-            if (client.Name == null ||
-                client.Age == null ||
-                client.Sex == null ||
-                client.StateId == null ||
-                client.StateDescription == null ||
-                client.CityId == null ||
-                client.CityDescription == null)
-            {
-                throw new ArgumentException("Necessário preencher todos os parâmetros do Cliente");
-            }
-
+            await ValidadeParameters(client);
 
             return await _clientRepository.Add(client);
         }
 
         public async Task Delete(int clientId)
         {
+            if (await _clientRepository.ClientExists(clientId) == false)
+                throw new InvalidOperationException("Client não encontrado na base!");
+
             await _clientRepository.Delete(clientId);
         }
 
@@ -56,7 +49,28 @@ namespace CadastroClientQ.Application
 
         public async Task<Client> Update(Client client)
         {
+            await ValidadeParameters(client);
+
+            if (await _clientRepository.ClientExists(client.Id) == false)
+                throw new InvalidOperationException("Client não encontrado na base!");
+
             return await _clientRepository.Update(client);
+        }
+
+        private async Task<bool> ValidadeParameters(Client client)
+        {
+            if (client.Name == null ||
+               client.Age == null ||
+               client.Sex == null ||
+               client.StateId == null ||
+               client.StateDescription == null ||
+               client.CityId == null ||
+               client.CityDescription == null)
+            {
+                throw new ArgumentException("Necessário preencher todos os parâmetros do Cliente");
+            }
+
+            return true;
         }
     }
 }
