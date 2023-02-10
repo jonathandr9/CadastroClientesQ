@@ -18,6 +18,14 @@
         "js/dataTables.bootstrap4.min.js",
         "js/dataTables.dataTables.min.js"
       ]
+    },
+    {
+      "library": "jquery-toast-plugin@1.3.2",
+      "destination": "wwwroot/lib/jquery-toast-plugin/",
+      "files": [
+        "jquery.toast.min.js",
+        "jquery.toast.min.css"
+      ]
     }
   ]
 }

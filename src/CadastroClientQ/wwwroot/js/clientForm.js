@@ -29,6 +29,11 @@
     $("#formUpdateClient").submit(function () {
         updateClient();
     });
+
+    if (window.location.href.includes('?') == false) {
+        setTimeout(function () { window.location = window.location.href + '?' }, 2000);
+    }
+
 });
 
 function openModalAddClient() {
@@ -85,12 +90,11 @@ function addClient() {
         data: JSON.stringify(dados),
         success: function (result) {
             if (result.type == "success") {
-                alert("Client Cadastrado com Sucesso!");
-                //hideModalAddModel();
-                setTimeout(function () { window.location.reload() }, 1000);
+                displayMessage("Client Cadastrado com Sucesso!", "success");
+                setTimeout(function () { window.location.reload() }, 2000);
                 $(".load").hide();
             } else {
-                alert(result.message);
+                displayMessage(result.message, "error");
             }
         }
     });
@@ -172,11 +176,11 @@ function updateClient() {
         data: JSON.stringify(dados),
         success: function (result) {
             if (result.type == "success") {
-                alert("Cliente Atualizado com Sucesso!");
-                setTimeout(function () { window.location.reload() }, 1000);
+                setTimeout(function(){ window.location.reload(true) }, 2000);
+                displayMessage("Cliente Atualizado com Sucesso!", "success");
                 $(".load").hide();
             } else {
-                alert(result.message);
+                displayMessage(result.message, "error");
             }
         }
     });
@@ -210,12 +214,12 @@ function deleteClient(clientId) {
         type: "POST",
         success: function (result) {
             if (result.type == "success") {
-                alert(result.message);
+                displayMessage(result.message, "sucess");
                 $(".load").hide();
                 $("#modalConfirmAction").modal('hide');
-                setTimeout(function () { window.location.reload() }, 1000);
+                setTimeout(function () { window.location.reload() }, 2000);
             } else {
-                alert(result.message);
+                displayMessage(result.message, "error");
             }
         }
     });
