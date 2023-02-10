@@ -19,6 +19,18 @@ namespace CadastroClientQ.Application
 
         public async Task<Client> AddClient(Client client)
         {
+            if (client.Name == null ||
+                client.Age == null ||
+                client.Sex == null ||
+                client.StateId == null ||
+                client.StateDescription == null ||
+                client.CityId == null ||
+                client.CityDescription == null)
+            {
+                throw new ArgumentException("Necessário preencher todos os parâmetros do Cliente");
+            }
+
+
             return await _clientRepository.Add(client);
         }
 
