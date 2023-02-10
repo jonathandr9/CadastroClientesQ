@@ -25,6 +25,10 @@
     $("#formAddModel").submit(function () {
         addClient();
     });
+
+    $("#formUpdateClient").submit(function () {
+        updateClient();
+    });
 });
 
 function openModalAddClient() {
@@ -168,10 +172,9 @@ function updateClient() {
         data: JSON.stringify(dados),
         success: function (result) {
             if (result.type == "success") {
-                alert(result.message);
-                hideModalUpdateModel();
+                alert("Cliente Atualizado com Sucesso!");
+                setTimeout(function () { window.location.reload() }, 1000);
                 $(".load").hide();
-                setTimeout(function () { window.location.reload() }, 2000);
             } else {
                 alert(result.message);
             }

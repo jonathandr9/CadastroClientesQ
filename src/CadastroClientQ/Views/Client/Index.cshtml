@@ -112,57 +112,59 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <input type="hidden" id="idClientUpdateModal" />
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="inputNameUpdate">Nome</label>
-                            <input id="inputNameUpdate" class="form-control" maxlength="40" />
+                <form id="formUpdateClient">
+                    <div class="modal-body">
+                        <input type="hidden" id="idClientUpdateModal" />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="inputNameUpdate">Nome</label>
+                                <input id="inputNameUpdate" class="form-control" maxlength="40" required />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="inputAgeUpdate">Idade</label>
+                                <input id="inputAgeUpdate" type="number" class="form-control" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="sexSelectUpdate">Sexo</label>
+                                <select id="sexSelectUpdate" class="form-control form-control-user" required>
+                                    <option selected value=""></option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                    <option value="3">Não Informar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="stateSelectUpdate">Estado</label>
+                                <select id="stateSelectUpdate" class="form-control form-control-user" required>
+                                    <option selected value=""></option>
+                                    @foreach (var item in Model.States)
+                                    {
+                                    <option value="@item.Id">@item.Description</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="citySelectUpdate">Cidade</label>
+                                <select id="citySelectUpdate" class="form-control form-control-user" disabled required>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <div class="modal-footer">
+                        <div class="text-right">
+                            <button class="btn btn-danger" onclick="hideModalUpdateClient()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
+                            <button class="btn btn-primary" id="buttonUpdateClient" type="submit"><span class="icon-label"></span><span class="btn-text">Atualizar</span></button>
                         </div>
                     </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="inputAgeUpdate">Idade</label>
-                            <input id="inputAgeUpdate" type="number" class="form-control" />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="sexSelectUpdate">Sexo</label>
-                            <select id="sexSelectUpdate" class="form-control form-control-user">
-                                <option selected value=""></option>
-                                <option value="1">Masculino</option>
-                                <option value="2">Feminino</option>
-                                <option value="3">Não Informar</option>
-                            </select>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="stateSelectUpdate">Estado</label>
-                            <select id="stateSelectUpdate" class="form-control form-control-user">
-                                <option selected value=""></option>
-                                @foreach (var item in Model.States)
-                                {
-                                <option value="@item.Id">@item.Description</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="citySelectUpdate">Cidade</label>
-                            <select id="citySelectUpdate" class="form-control form-control-user" disabled>
-                            </select>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                </div>
-                <div class="modal-footer">
-                    <div class="text-right">
-                        <button class="btn btn-danger" onclick="hideModalUpdateClient()"><span class="icon-label"></span><span class="btn-text">Cancelar</span></button>
-                        <button class="btn btn-primary" id="buttonUpdateClient" onclick="updateClient()"><span class="icon-label"></span><span class="btn-text">Atualizar</span></button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
