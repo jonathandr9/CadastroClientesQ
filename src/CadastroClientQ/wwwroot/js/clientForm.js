@@ -6,7 +6,7 @@
         language: {
             "sUrl": "../../../media/Portuguese-Brasil.json",
         },
-        order: [[1, 'asc']]
+        order: [[0, 'asc']]
     });
 
 
@@ -20,6 +20,10 @@
         var id = $(this).find(':selected').val();
 
         onStateSelected(id, "#citySelectUpdate");
+    });
+
+    $("#formAddModel").submit(function () {
+        addClient();
     });
 });
 
@@ -54,7 +58,6 @@ function onStateSelected(idState, field) {
 
 function addClient() {
 
-    $("#modalBodyAddClient").validate();
 
     $(".load").show();
 
@@ -88,6 +91,7 @@ function addClient() {
         }
     });
 }
+
 
 function hideModalAddClient() {
     $("#inputName").val('');
@@ -212,6 +216,10 @@ function deleteClient(clientId) {
             }
         }
     });
+}
+
+function hideModalDeleteClient() {
+    $("#modalConfirmAction").modal('hide');
 }
 
 function hideModalUpdateClient() {
